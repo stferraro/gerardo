@@ -1,31 +1,13 @@
-let light_level = 0
-input.onGesture(Gesture.Shake, function () {
-    light_level += 255
-    if (light_level > 128) {
-        basic.showLeds(`
-            # . # . #
-            . # # # .
-            # # . # #
-            . # # # .
-            # . # . #
-            `)
-        if (light_level <= 128) {
-            basic.showLeds(`
-                . . . # #
-                . . # . .
-                . # . . .
-                . . # . .
-                . . . # #
-                `)
-        }
-    }
+let contador = 0
+input.onButtonPressed(Button.A, function () {
+    basic.showNumber(contador)
 })
-input.onButtonPressed(Button.AB, function () {
-    basic.showLeds(`
-        . . . . .
-        . . . . .
-        . . . . .
-        . . . . .
-        . . . . .
-        `)
+input.onSound(DetectedSound.Loud, function () {
+    contador += 1
+    basic.showNumber(contador)
+    basic.showIcon(IconNames.Rabbit)
+})
+input.onButtonPressed(Button.B, function () {
+    contador = 0
+    basic.showNumber(contador)
 })
